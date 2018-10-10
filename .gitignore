@@ -1,3 +1,5 @@
+Pipfile
+
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
@@ -29,7 +31,7 @@ venv
 *.pyc
 
 # builds
-my_dash_component.egg-info
+dash_treeview_antd.egg-info
 dist
 *__pycache__*
 __pycache__/

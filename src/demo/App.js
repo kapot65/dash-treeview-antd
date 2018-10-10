@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 
-import {ExampleComponent} from '../lib';
+import {TreeView} from '../lib';
 
 class App extends Component {
 
@@ -22,7 +22,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <ExampleComponent
+                <TreeView
                     setProps={this.setProps}
                     {...this.state}
                 />

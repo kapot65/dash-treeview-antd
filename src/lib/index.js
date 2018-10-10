@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import ExampleComponent from './components/ExampleComponent.react';
+import TreeView from './components/TreeView.react';
 
 export {
-    ExampleComponent
+    TreeView
 };

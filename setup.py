@@ -1,9 +1,9 @@
 import json
 import os
+
 from setuptools import setup
 
-
-with open(os.path.join('my_dash_component', 'package.json')) as f:
+with open(os.path.join('dash_treeview_antd', 'package.json')) as f:
     package = json.load(f)
 
 package_name = package["name"].replace(" ", "_").replace("-", "_")
@@ -16,5 +16,6 @@ setup(
     include_package_data=True,
     license=package['license'],
     description=package['description'] if 'description' in package else package_name,
+    keywords=package['keywords'],
     install_requires=[]
 )

@@ -1,4 +1,4 @@
-include my_dash_component/bundle.js
-include my_dash_component/metadata.json
-include my_dash_component/package.json
+include dash_treeview_antd/bundle.js
+include dash_treeview_antd/metadata.json
+include dash_treeview_antd/package.json
 include README.md

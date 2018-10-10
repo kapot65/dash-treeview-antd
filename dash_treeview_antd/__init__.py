@@ -1,8 +1,8 @@
 from __future__ import print_function as _
 
+import json
 import os as _os
 import sys as _sys
-import json
 
 import dash as _dash
 
@@ -33,7 +33,7 @@ _js_dist = [
     {
         'relative_package_path': 'bundle.js',
         'external_url': (
-            'https://unpkg.com/my_dash_component'
+            'https://unpkg.com/dash_treeview_antd'
             '/' + package_name + '/bundle.js'
         ).format(__version__),
         'namespace': package_name

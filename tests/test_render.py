@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from my_dash_component import ExampleComponent  # pylint: disable=no-name-in-module
+from dash_treeview_antd import TreeView  # pylint: disable=no-name-in-module
 
 
 class Tests(IntegrationTests):
@@ -13,7 +13,7 @@ class Tests(IntegrationTests):
         app = dash.Dash(__name__)
         app.layout = html.Div([
             html.Div(id='waitfor'),
-            ExampleComponent(label='Example Component Label')
+            TreeView(label='Example Component Label')
         ])
 
         self.startServer(app)
