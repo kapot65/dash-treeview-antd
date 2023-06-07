@@ -4,7 +4,7 @@
 FROM mcr.microsoft.com/devcontainers/python:3.9
 
 # Install Node:
-RUN su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install 11 2>&1"
+RUN su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install 9 2>&1"
 
 # Keep Python from generating .pyc files in the container:
 ENV PYTHONDONTWRITEBYTECODE=1
