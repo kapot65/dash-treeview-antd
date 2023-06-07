@@ -1,44 +1,54 @@
-import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 
-import { Tree } from 'antd';
-import 'antd/dist/antd.min.css'
+import {Tree} from 'antd';
+import 'antd/dist/antd.min.css';
 const TreeNode = Tree.TreeNode;
 
 /**
  * TreeView component for Dash
  */
 export default class TreeView extends Component {
-
     constructor(props) {
-      super(props);
-      this.renderTreeNode = this.renderTreeNode.bind(this)
+        super(props);
+        this.renderTreeNode = this.renderTreeNode.bind(this);
     }
 
     renderTreeNode(nodeData) {
-      return <TreeNode key={nodeData.key} title={nodeData.title}>{
-              nodeData.children ?
-                nodeData.children.map(ch => this.renderTreeNode(ch)) : ''}
-          </TreeNode>
+        return nodeData.map((item) => (
+            <TreeNode key={item.key} title={item.title}>
+                {item.children
+                    ? item.children.map((ch) => this.renderTreeNode(ch))
+                    : ''}
+            </TreeNode>
+        ));
     }
 
     render() {
         const {
-          id, checkable, multiple, checked, expanded,
-          selected, setProps, data} = this.props;
+            id,
+            checkable,
+            multiple,
+            checked,
+            expanded,
+            selected,
+            setProps,
+            data,
+        } = this.props;
 
         return (
             <div id={id}>
                 <Tree
-                  checkable={checkable} multiple={multiple}
-                  defaultExpandedKeys={expanded}
-                  defaultSelectedKeys={selected}
-                  defaultCheckedKeys={checked}
-                  onSelect={e => setProps({selected: e})}
-                  onCheck={e => setProps({checked: e})}
-                  onExpand={e => setProps({expanded: e})}
+                    checkable={checkable}
+                    multiple={multiple}
+                    defaultExpandedKeys={expanded}
+                    defaultSelectedKeys={selected}
+                    defaultCheckedKeys={checked}
+                    onSelect={(e) => setProps({selected: e})}
+                    onCheck={(e) => setProps({checked: e})}
+                    onExpand={(e) => setProps({expanded: e})}
                 >
-                  {data ? this.renderTreeNode(data) : ''}
+                    {data ? this.renderTreeNode(data) : ''}
                 </Tree>
             </div>
         );
@@ -46,27 +56,27 @@ export default class TreeView extends Component {
 }
 
 const PropTreeNodeShape = {
-  /**
-   * Node ID
-   */
-  key: PropTypes.string.isRequired,
-  /**
-   * Disables the node (Default - false)
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Disables the checkbox of the  node (Default - false)
-   */
-  disableCheckbox: PropTypes.bool,
-  /**
-   * Set whether the treeNode can be selected (Default - true)
-   */
-  selectable: PropTypes.bool,
+    /**
+     * Node ID
+     */
+    key: PropTypes.string.isRequired,
+    /**
+     * Disables the node (Default - false)
+     */
+    disabled: PropTypes.bool,
+    /**
+     * Disables the checkbox of the  node (Default - false)
+     */
+    disableCheckbox: PropTypes.bool,
+    /**
+     * Set whether the treeNode can be selected (Default - true)
+     */
+    selectable: PropTypes.bool,
 
-  /**
-   * Node text
-   */
-  title: PropTypes.string,
+    /**
+     * Node text
+     */
+    title: PropTypes.string,
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -91,7 +101,7 @@ TreeView.propTypes = {
     /**
      * Tree data
      */
-    data: PropTreeNode,
+    data: PropTypes.arrayOf(PropTreeNode),
 
     /**
      * List of keys of checked nodes.
@@ -112,27 +122,30 @@ TreeView.propTypes = {
      * Dash-assigned callback that should be called whenever any of the
      * properties change
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
-
 TreeView.defaultProps = {
-  data: {
-    title: 'Parent',
-    key: '0',
-    children: [{
-      title: 'Child',
-      key: '0-0',
-      children: [
-        { title: 'Subchild', key: '0-0-1' },
-        { title: 'Subchild', key: '0-0-2' },
-        { title: 'Subchild', key: '0-0-3' },
-      ],
-    }]
-  },
-  checkable: false,
-  multiple: true,
-  checked: [],
-  selected: [],
-  expanded: ['0']
-}
+    data: [
+        {
+            title: 'Parent',
+            key: '0',
+            children: [
+                {
+                    title: 'Child',
+                    key: '0-0',
+                    children: [
+                        {title: 'Subchild', key: '0-0-1'},
+                        {title: 'Subchild', key: '0-0-2'},
+                        {title: 'Subchild', key: '0-0-3'},
+                    ],
+                },
+            ],
+        },
+    ],
+    checkable: false,
+    multiple: true,
+    checked: [],
+    selected: [],
+    expanded: ['0'],
+};
