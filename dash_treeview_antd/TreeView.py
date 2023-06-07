@@ -8,55 +8,40 @@ class TreeView(Component):
 TreeView component for Dash
 
 Keyword arguments:
-- id (string; optional): The ID used to identify this component in Dash callbacks
-- checkable (boolean; optional): Adds a Checkbox before the treeNodes (Default - false)
-- multiple (boolean; optional): Allows selecting multiple treeNodes (Default - false)
-- data (optional): Tree data
-- checked (list; optional): List of keys of checked nodes.
-- selected (list; optional): List of keys of selected nodes.
-- expanded (list; optional): List of keys of expanded nodes.
 
-Available events: """
+- id (string; optional):
+    The ID used to identify this component in Dash callbacks.
+
+- checkable (boolean; default False):
+    Adds a Checkbox before the treeNodes (Default - False).
+
+- checked (list of strings; optional):
+    List of keys of checked nodes.
+
+- data (list; default [    {        title: 'Parent',        key: '0',        children: [            {                title: 'Child',                key: '0-0',                children: [                    {title: 'Subchild', key: '0-0-1'},                    {title: 'Subchild', key: '0-0-2'},                    {title: 'Subchild', key: '0-0-3'},                ],            },        ],    },]):
+    Tree data.
+
+- expanded (list of strings; default ['0']):
+    List of keys of expanded nodes.
+
+- multiple (boolean; default True):
+    Allows selecting multiple treeNodes (Default - False).
+
+- selected (list of strings; optional):
+    List of keys of selected nodes."""
+    _children_props = []
+    _base_nodes = ['children']
+    _namespace = 'dash_treeview_antd'
+    _type = 'TreeView'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, checkable=Component.UNDEFINED, multiple=Component.UNDEFINED, data=Component.UNDEFINED, checked=Component.UNDEFINED, selected=Component.UNDEFINED, expanded=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'checkable', 'multiple', 'data', 'checked', 'selected', 'expanded']
-        self._type = 'TreeView'
-        self._namespace = 'dash_treeview_antd'
+        self._prop_names = ['id', 'checkable', 'checked', 'data', 'expanded', 'multiple', 'selected']
         self._valid_wildcard_attributes =            []
-        self.available_events = []
-        self.available_properties = ['id', 'checkable', 'multiple', 'data', 'checked', 'selected', 'expanded']
+        self.available_properties = ['id', 'checkable', 'checked', 'data', 'expanded', 'multiple', 'selected']
         self.available_wildcard_properties =            []
-
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
-        _locals.update(kwargs)  # For wildcard attrs
-        args = {k: _locals[k] for k in _explicit_args if k != 'children'}
+        _locals.update(kwargs)  # For wildcard attrs and excess named props
+        args = {k: _locals[k] for k in _explicit_args}
 
-        for k in []:
-            if k not in args:
-                raise TypeError(
-                    'Required argument `' + k + '` was not specified.')
         super(TreeView, self).__init__(**args)
-
-    def __repr__(self):
-        if(any(getattr(self, c, None) is not None
-               for c in self._prop_names
-               if c is not self._prop_names[0])
-           or any(getattr(self, c, None) is not None
-                  for c in self.__dict__.keys()
-                  if any(c.startswith(wc_attr)
-                  for wc_attr in self._valid_wildcard_attributes))):
-            props_string = ', '.join([c+'='+repr(getattr(self, c, None))
-                                      for c in self._prop_names
-                                      if getattr(self, c, None) is not None])
-            wilds_string = ', '.join([c+'='+repr(getattr(self, c, None))
-                                      for c in self.__dict__.keys()
-                                      if any([c.startswith(wc_attr)
-                                      for wc_attr in
-                                      self._valid_wildcard_attributes])])
-            return ('TreeView(' + props_string +
-                   (', ' + wilds_string if wilds_string != '' else '') + ')')
-        else:
-            return (
-                'TreeView(' +
-                repr(getattr(self, self._prop_names[0], None)) + ')')
