@@ -15,11 +15,10 @@ export default class TreeView extends Component {
     }
 
     renderTreeNode(nodeData) {
-        return nodeData.map(item => (
+        const dataArray = Array.isArray(nodeData) ? nodeData : [nodeData];
+        return dataArray.map(item => (
             <TreeNode key={item.key} title={item.title}>
-                {item.children
-                    ? item.children.map(ch => this.renderTreeNode(ch))
-                    : ''}
+                {item.children ? this.renderTreeNode(item.children) : ''}
             </TreeNode>
         ));
     }
