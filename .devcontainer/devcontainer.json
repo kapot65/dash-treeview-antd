@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+    "name": "dash-treeview-antd",
+
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+
+    "runArgs": [
+        // Docker container name:
+        "--name",
+        "${localWorkspaceFolderBasename}"
+    ],
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "stkb.rewrap",
+                "gruntfuggly.todo-tree",
+                "mikestead.dotenv",
+                // Markdown:
+                "davidanson.vscode-markdownlint",
+                "yzhang.markdown-all-in-one",
+                "bierner.markdown-footnotes",
+                // HTML:
+                "formulahendry.auto-rename-tag",
+                // TOML:
+                "tamasfe.even-better-toml",
+                // SCSS:
+                "stylelint.vscode-stylelint",
+                // GitHub:
+                "GitHub.copilot",
+                "GitHub.copilot-labs"
+            ]
+        }
+    },
+
+    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+    "remoteUser": "root"
+}
